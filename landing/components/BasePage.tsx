@@ -43,7 +43,7 @@ export const BasePage: React.FC = () => {
             <span className="text-xs md:text-sm xl:text-base font-normal select-none text-gray-900">
               {text.experience}
             </span>
-            <div className="bg-gray-900 h-px w-0 group-hover:w-full transition-all duration-300"></div>
+            <div className="bg-gray-900 h-px w-0 group-hover:w-full transition-all duration-300" />
           </div>
         )}
 
