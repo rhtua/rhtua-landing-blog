@@ -115,7 +115,216 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Homepage */
+.background {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.background:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  z-index: 0;
+  background: url("/media/me.png") center top no-repeat;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+}
+
+/* Header */
+.buttonHover:hover {
+  div {
+    transition: all 300ms;
+    width: 100%;
+  }
+}
+
+/* Site intro */
+.opening {
+  z-index: 999;
+  background-color: rgb(60, 60, 60);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  animation-timing-function: ease;
+  animation-name: slide-up;
+  animation-fill-mode: forwards;
+  animation-duration: 700ms;
+  animation-delay: 1800ms;
+}
+
+.opening-text {
+  margin-left: 80px;
+  animation-timing-function: ease;
+  animation-name: slide-in;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-delay: 500ms;
+  margin-bottom: 50vh;
+}
+
+.middle-text {
+  width: 100%;
+  overflow: hidden;
+  max-width: 500px;
+}
+
+.middle-text div {
+  margin-left: 2px;
+  animation-timing-function: ease;
+  animation-name: slide-right;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-delay: 500ms;
+  transform: translateX(-89%);
+}
+
+@keyframes slide-right {
+  from {
+    margin-left: 2px;
+  }
+
+  to {
+    margin-left: 0px;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-up {
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    margin-left: 80px;
+  }
+
+  to {
+    margin-left: 0px;
+  }
+}
+
+/* Swiper setup */
+.swiper {
+  border-radius: 16px;
+  max-height: calc(100vh - 5rem);
+  max-width: calc(100svw - 10%);
+  margin: 0;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  max-width: calc(100vw - 144px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.projectsSlide {
+  max-height: 100% !important;
+  width: 100%;
+}
+
+:root {
+  --swiper-navigation-color: #f04a00;
+}
+
+@media only screen and (max-width: 62em) {
+  .swiper {
+    border-radius: 16px;
+    max-height: calc(100svh - 78px);
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .swiper-slide {
+    max-width: 100%;
+    max-height: calc(100svh - 78px);
+  }
+
+  .background:after {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+  }
+
+  .mySwiper {
+    width: 100%;
+  }
+
+  .mySwiper2 {
+    width: 100%;
+  }
+
+  .projectsSwiper {
+    max-height: 100% !important;
+    width: 100%;
+  }
+
+  .projectsSlide {
+    max-height: 100% !important;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 48em) {
+  .swiper {
+    border-radius: 16px;
+    max-height: calc(100svh - 78px);
+    max-width: 100svw;
+    margin: 0;
+  }
+
+  .swiper-slide {
+    max-width: 100%;
+    max-height: calc(100svh - 78px);
+  }
+
+  .background:after {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+  }
+
+  .mySwiper {
+    width: 100%;
+  }
+
+  .mySwiper2 {
+    width: 100%;
+  }
+
+  .projectsSwiper {
+    max-height: 100% !important;
+    width: 100%;
+  }
+
+  .projectsSlide {
+    max-height: 100% !important;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 86em) {
+  .aboutHeader {
+    font-size: 150%;
   }
 }
