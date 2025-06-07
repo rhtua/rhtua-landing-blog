@@ -139,7 +139,7 @@
   height: 100%;
   opacity: 0.3;
   z-index: 0;
-  background: url("/media/me.png") center top no-repeat;
+  /* background: url("/media/me.png") center top no-repeat; */
   -webkit-background-size: contain;
   -moz-background-size: contain;
   background-size: contain;

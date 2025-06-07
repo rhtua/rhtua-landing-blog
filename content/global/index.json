@@ -5,7 +5,7 @@
       "color": "orange",
       "style": "float"
     },
-    "name": "Tina Starter",
+    "name": "Blog",
     "color": "default",
     "nav": [
       {
@@ -51,7 +51,7 @@
     ]
   },
   "theme": {
-    "color": "blue",
+    "color": "orange",
     "font": "sans",
     "darkMode": "light"
   }
