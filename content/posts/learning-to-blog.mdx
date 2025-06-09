@@ -2,19 +2,101 @@
 title: Conteinerização de serviços com Docker
 heroImg: /uploads/posts/docker.png
 excerpt: >
-  Starting a blog sounds easy—until you're staring at a blank page. Learn how to
-  find your voice, structure your content, and actually hit publish.
+  A inconsistência entre ambientes de desenvolvimento é um desafio constante
+  para desenvolvedores, resultando em retrabalho e frustração. Mas existe uma
+  tecnologia que promete padronizar e simplificar esse processo: os contêineres,
+  e o Docker é a ferramenta que torna isso possível.
 author: content/authors/Arthur-Fusieger.md
 date: 2025-06-08T20:30:00.000Z
+tags:
+  - tag: content/tags/docker.mdx
+  - tag: content/tags/virtualizao.mdx
+  - tag: content/tags/container.mdx
 ---
 
-Blogging is one of the best ways to share ideas, build an audience, and create valuable content online. But for many, the hardest part is just getting started. What should you write about? How do you keep it engaging? And how do you make sure your posts don't just disappear into the void?
+Ambientes de desenvolvimento costumam ser uma das coisas mais particulares entre os desenvolvedores, onde cada um tem seus favoritos no que tange a  ferramentas, sistema operacional, linguagem e outros pormenores. Com o passar do tempo, esses ambientes ganham ainda mais particularidades com a instalação de softwares, bibliotecas e projetos que acarretam em um número de mudanças difícil de manter sob controle, dificultando a reprodutibilidade de cenários e culminando no famoso “*Na minha máquina funciona!*”
 
-Here are a few simple steps to get you rolling:
+Esse é um dos exemplos latentes do cotidiano de quem trabalha com tecnologia onde a utilização de contêineres seria muito benéfica. Mas antes, precisamos entender o que é um container, quais suas vantagens e como o Docker funciona, o que abordaremos a seguir.
 
-1. Pick a Topic You Actually Care About - If you're not interested, no one else will be.
-2. Write Like You Talk - Forget the fancy words. Just be clear and real.
-3. Make It Easy to Skim - Use headers, bullet points, and short paragraphs.
-4. End With a Clear Takeaway - What should the reader do next?
+## Máquinas virtuais X Containers
 
-Most importantly—just start. Your first posts won't be perfect, but they'll get you one step closer to finding your voice and building something great.
+![](/uploads/posts/docker/DOCKER-VM.png)
+
+Para emular um ambiente diferente do que se tinha à disposição, a solução mais comum era a criação de uma máquina virtual, que aloca recursos do dispositivo em que está instalada para funcionar tal qual um segundo computador, com um sistema operacional próprio e independente, utilizando o que é chamado de *Hypervisor*, uma ferramenta capaz de abstrair o hardware de onde está alocado do sistema operacional.
+
+Apesar de funcionar para o que se propõe, a virtualização também traz outros desafios, uma vez que, por exemplo, emular uma máquina é algo custoso e pode acarretar em desempenho insatisfatório tanto na máquina hospedeira, quanto na máquina virtual. Adaptadores de rede, dispositivos de entrada e outros tipos de acessórios também podem não ser simples de configurar dentro do ambiente emulado, por vezes exigindo tempo extra de configuração antes da virtualização estar completamente pronta para uso.
+
+Quando existe a necessidade de se criar um ambiente separado, se faz necessário ponderar se realmente a virtualização de todo um outro sistema operacional completo é o caminho ideal, dado que a operação do *SO* em si pode ser muito mais computacionalmente pesado do que a tarefa que se deseja executar dentro dele.
+
+Contêineres, por sua vez, são pacotes com aplicações já acompanhadas de suas dependências, binários e qualquer outro tipo de arquivo de configuração necessário, que consegue ser executado de forma isolada e da mesma forma, independente do ambiente em que é executado. Isso é possível, uma vez que o contêiner, diferentemente da máquina virtual, utiliza o kernel do sistema operacional hospedeiro, contornando o custo computacional de se emular um novo, e sendo executado apenas como um processo do sistema.
+
+## Sobre a ferramenta Docker 
+
+Docker é um software de código aberto, criado em 2013 por *Solomon Hykes*, em sua empresa *dotCloud*, que, dado o sucesso da ferramenta, viria a se chamar *Docker Inc* no mesmo ano.
+Ao anunciar o programa e oferecê-lo de forma aberta, o Docker foi rapidamente adotado pelos desenvolvedores, conseguiu cerca de U$15 milhões em financiamento e em 2 anos já tinha colaborado com gigantes do mercado de tecnologia para integrar a ferramenta aos serviços delas.
+
+A plataforma é construída em cima da tecnologia de conteinerização *LXC* presente no Linux e permite que criemos imagens (os pacotes de aplicação já prontos, mencionados anteriormente) conforme a necessidade do momento, sendo possível executar um contêiner com essas instruções a qualquer momento.
+
+O Docker também fornece o Docker Hub, um catálogo público de imagens que dispõe de imagens pré-carregadas, para oferecer ambientes que já tenham linguagens ou pacotes específicos configurados e, em cima disso, é possível fazer novos ajustes, adicionar novas ferramentas e compartilhar espaços de disco, ou volumes, de forma que o contêiner atenda todas as necessidades do usuário, sem alterar sua máquina de trabalho. Novas imagens criadas também podem ser disponibilizadas pelos próprios usuários na plataforma, mantendo o catálogo vivo e diversificado, além de facilitar o compartilhamento de ambientes.
+
+## Início rápido
+
+O caminho mais simples de instalação do Docker é através do Docker Desktop, que está disponível para download no [site oficial](\[https://www.docker.com/products/docker-desktop/]\(https://www.docker.com/products/docker-desktop/\)). Além da ferramenta visual, os comandos de terminal da ferramenta são bem intuitivos, ao abrir um terminal na pasta da sua aplicação você pode executar:
+
+`docker pull \<nome-da-imagem>`:  Baixa a imagem solicitada do repositório, por padrão o repositório é o próprio Docker Hub.
+
+`docker run \<nome-da-imagem>`: Cria um contêiner a partir da imagem selecionada
+
+`docker build`: Cria uma imagem a partir de um arquivo \*.Dockerfile ou Dockerfile presente na pasta atual para que seja possível executar esse contêiner. 
+
+`docker --help`: Lista e descreve todos os outros comandos que não estão listados aqui, consulte sempre que necessário
+
+Ao começar a trabalhar com Docker, frequentemente aparecerão Dockerfiles na raiz dos projetos, e sua estrutura consiste em:
+
+| Comando                | Descrição                                                                                            |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- |
+| **FROM \<imagem>**     | A imagem base para sua aplicação, geralmente do Docker Hub.                                          |
+| **WORKDIR \<pasta>**   | Define a pasta de trabalho dentro do contêiner.                                                      |
+| **COPY \<de> \<para>** | Copia arquivos ou pastas do caminho de origem para o destino dentro do contêiner.                    |
+| **RUN \<comando>**     | Executa um comando e cria uma nova camada na imagem.                                                 |
+| **EXPOSE \<porta>**    | Torna a porta especificada acessível ao restante da máquina.                                         |
+| **CMD \<comando>**     | O comando a ser executado quando o contêiner iniciar (apenas uma declaração permitida).              |
+| **OUTROS COMANDOS**    | O Docker mantém uma uma lista para referência [aqui](https://docs.docker.com/reference/dockerfile/). |
+
+Fica como sugestão, caso queira apenas ter o primeiro contato com o tema, após a instalação da aplicação, é possível utilizar a imagem de teste disponível do Docker Hub com o clássico “*Hello World*”, de forma bem simples:
+
+```shell
+#Baixa a imagem e cria o container
+docker pull hello-world
+docker run hello-world
+```
+
+Caso esteja tudo certo, a imagem deixará uma mensagem te cumprimentando e avisando que está tudo funcionando perfeitamente.
+
+![](/uploads/posts/docker/hello-world.png)
+
+Como exemplo descritivo, supondo que abrimos um projeto que seja conteinerizado, e nos deparamos com o Dockerfile a seguir:
+
+![](/uploads/posts/docker/Dockerfile.png)
+
+Ao executar o `docker build` dentro dessa pasta, o docker:
+
+1. Baixaria uma imagem pronta para lidar com nodeJS
+2. Definiria a pasta de trabalho dos próximos comandos como a */app*. É criada caso não exista.
+3. Copia o arquivo *package.json* da máquina para a pasta */app*
+4. Executa o comando e instala as dependências, criando uma nova camada.
+5. Copia o restante dos arquivos da pasta na máquina para dentro da pasta */app*, no contêiner.
+6. Com o contêiner inicializado, disponibiliza a porta *3000* para ser acessada fora do contêiner.
+7. Com o contêiner inicializado, executa o comando “*npm run start*”, que inicia a aplicação copiada.
+
+Por fim, ao executar a imagem resultante com docker run, a aplicação em questão estaria disponível para acesso localmente na máquina do usuário em [http://localhost:3000](http://localhost:3000), independente de seu sistema operacional e com a garantia de um ambiente isolado e controlado. E com isso, se “*Na minha máquina funciona!*”, na sua também vai funcionar.
+
+## Outras aplicações
+
+O uso do Docker se estendeu para muito além do cotidiano dos desenvolvedores, e seria quase negligente não mencionar o potencial da ferramenta em outros aspectos. Para além de criar ambientes replicáveis, que são ideais para a ambientação de novos integrantes em uma equipe de desenvolvimento ou treinamentos, por exemplo, a criação de imagens e contêineres oferece vantagens adicionais.
+
+A implantação de softwares em novos servidores transcorre de forma mais previsível, e a criação de imagens para cada deploy cria um histórico de versões que traz segurança e permite restaurar versões anteriores funcionais de um sistema no caso de uma nova versão com um bug crítico.
+
+Essa facilitação da entrega de aplicações também permite o lançamento de novas versões ou a reinicialização de contêineres com problema de forma simples e, frequentemente, automática, reduzindo o tempo que os serviços ficam fora do ar.
+
+Mas *orquestração de contêineres*, *entrega contínua* ou até mesmo *observabilidade* e *disponibilidade* são temas que devem ser abordados em outro momento, então ficaremos por aqui.

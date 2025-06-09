@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -327,4 +327,17 @@
   .aboutHeader {
     font-size: 150%;
   }
+}
+
+.prose :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  color: #a2a9b0;
+  background-color: #333537;
+  font-weight: 400;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+}
+
+.prose :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)):before,
+.prose :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)):after {
+  content: unset !important;
 }

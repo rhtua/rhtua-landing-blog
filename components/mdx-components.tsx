@@ -1,11 +1,16 @@
 import { format } from 'date-fns';
 import React from 'react';
-import { Components, TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
+import {
+  Components,
+  TinaMarkdown,
+  TinaMarkdownContent,
+} from 'tinacms/dist/rich-text';
 import Image from 'next/image';
 import { Prism } from 'tinacms/dist/rich-text/prism';
 import { Video } from './blocks/video';
 import { PageBlocksVideo } from '@/tina/__generated__/types';
 import { mermaid } from './blocks/mermaid';
+import { Codeblock } from './layout/Codeblock';
 
 export const components: Components<{
   BlockQuote: {
@@ -27,7 +32,7 @@ export const components: Components<{
     if (!props) {
       return <></>;
     }
-    return <Prism lang={props.lang} value={props.value} />;
+    return <Codeblock children={props.value} language={props.lang} />;
   },
   BlockQuote: (props: {
     children: TinaMarkdownContent;
@@ -89,9 +94,7 @@ export const components: Components<{
               </div>
             </form>
             <div className='mt-3 text-sm text-gray-500'>
-              {props.disclaimer && (
-                <TinaMarkdown content={props.disclaimer} />
-              )}
+              {props.disclaimer && <TinaMarkdown content={props.disclaimer} />}
             </div>
           </div>
         </div>
