@@ -1,13 +1,23 @@
 'use client';
+import Link from 'next/link';
 import { homeText } from '../../translation';
 import './button.css';
 
-export const Homepage: React.FC<{ slideTo: (index: number) => void }> = ({
-  slideTo,
-}) => {
+export const Homepage: React.FC<{
+  slideTo: (index: number) => void;
+  isLargerThanLg: boolean;
+}> = ({ slideTo, isLargerThanLg }) => {
   const text = homeText;
   return (
-    <div className='w-full h-full background flex flex-col items-center justify-end text-[#ebebeb] text-[180%] sm:text-[170%] md:text-[180%] lg:text-[280%] xl:text-[72px]'>
+    <div className='relative w-full h-full background flex flex-col items-center justify-end text-[#ebebeb] text-[180%] sm:text-[170%] md:text-[180%] lg:text-[280%] xl:text-[72px]'>
+      {!isLargerThanLg && (
+        <Link
+          href='/posts'
+          className='absolute flex top-0 bg-white text-[1rem] mt-2 px-4 py-2 z-[100] rounded-full text-[#F04A00] font-semibold'
+        >
+          {text.myBlog}
+        </Link>
+      )}
       <div className='w-full h-full flex flex-col items-center justify-end lg:justify-center px-[2%] mt-0 lg:mt-[30%] mb-[5%] lg:mb-0'>
         <div className='z-[1] font-semibold flex'>
           <span>
@@ -26,7 +36,7 @@ export const Homepage: React.FC<{ slideTo: (index: number) => void }> = ({
         </p>
       </div>
       <div
-        className='text-sm lg:text-[19px] mb-[2%] mt-[4%] cursor-pointer'
+        className='text-sm lg:text-[19px] mb-[4%] mt-[4%] cursor-pointer'
         id='container'
         onClick={() => slideTo(1)}
       >

@@ -6,6 +6,7 @@ import { About } from './about';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import { Social } from './homepage/Social';
+import Link from 'next/link';
 
 export const BasePage: React.FC = () => {
   const swiperRef = useRef<SwiperRef>(null);
@@ -38,18 +39,20 @@ export const BasePage: React.FC = () => {
         {isLargerThanLg && (
           <div
             className='cursor-pointer flex flex-col group buttonHover'
-            onClick={() => slideTo(1)}
+            onClick={() => window.open('mailto:contato@rhtua.com.br')}
           >
-            <span className='text-xs md:text-sm xl:text-base font-normal select-none text-gray-900'>
-              {text.experience}
+            <span className='text-xs md:text-sm xl:text-base font-normal lg:font-normal select-none text-gray-900'>
+              {text.contact}
             </span>
-            <div className='bg-gray-900 h-px w-0 group-hover:w-full transition-all duration-300' />
+            <div className='bg-gray-900 h-px w-0 group-hover:w-full transition-all duration-300'></div>
           </div>
         )}
 
         {/* Logo */}
         <div
-          className='flex items-end gap-0.5 cursor-pointer -mt-1'
+          className={`flex items-end gap-0.5 cursor-pointer ${
+            isLargerThanLg ? 'ml-[-5%]' : ''
+          }`}
           onClick={() => slideTo(0)}
         >
           <span className='text-2xl md:text-3xl xl:text-4xl font-semibold select-none text-gray-900 p-1'>
@@ -62,15 +65,15 @@ export const BasePage: React.FC = () => {
 
         {/* Contact Button - Desktop Only */}
         {isLargerThanLg && (
-          <div
+          <Link
             className='cursor-pointer flex flex-col group buttonHover'
-            onClick={() => window.open('mailto:contato@rhtua.com.br')}
+            href={'/posts'}
           >
             <span className='text-xs md:text-sm xl:text-base font-normal lg:font-normal select-none text-gray-900'>
-              {text.contact}
+              BLOG
             </span>
             <div className='bg-gray-900 h-px w-0 group-hover:w-full transition-all duration-300'></div>
-          </div>
+          </Link>
         )}
 
         {/* Mobile Menu */}
@@ -137,7 +140,7 @@ export const BasePage: React.FC = () => {
             modules={[Pagination]}
           >
             <SwiperSlide key={0}>
-              <Homepage slideTo={slideTo} />
+              <Homepage slideTo={slideTo} isLargerThanLg={isLargerThanLg} />
             </SwiperSlide>
             <SwiperSlide key={1}>
               <About />

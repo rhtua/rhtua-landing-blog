@@ -25,7 +25,7 @@ export const Header = () => {
           <div className='relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4'>
             <div className='flex w-full items-center justify-between gap-12'>
               <Link
-                href='/'
+                href='/posts'
                 aria-label='home'
                 className='flex items-center space-x-2'
               >

@@ -1,3 +1,4 @@
+import { m } from "motion/react";
 import LocalizedStrings from "react-localization";
 
 const homeTextPortuguese = {
@@ -6,6 +7,7 @@ const homeTextPortuguese = {
   description:
     "Desenvolvedor de software como profissão e problem solver por natureza",
   knowMore: "CONHEÇA",
+  myBlog: "Conheça meu novo blog",
 };
 
 const homeTextEnglish = {
@@ -14,6 +16,7 @@ const homeTextEnglish = {
   description:
     "Software developer by profession and a problem solver by nature.",
   knowMore: "KNOW MORE",
+  myBlog: "Check out my blog",
 };
 
 export const homeText = new LocalizedStrings({

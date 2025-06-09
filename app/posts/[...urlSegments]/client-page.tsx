@@ -48,7 +48,7 @@ export default function PostClientPage(props: ClientPostProps) {
       <Section>
         <h2
           data-tina-field={tinaField(post, 'title')}
-          className={`w-full relative\tmb-8 text-6xl font-extrabold tracking-normal text-center title-font`}
+          className={`w-full relative mb-8 text-4xl lg:text-6xl font-extrabold tracking-normal text-center title-font`}
         >
           <span
             className={`bg-clip-text text-transparent bg-linear-to-r ${

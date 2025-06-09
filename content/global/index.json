@@ -1,7 +1,7 @@
 {
   "header": {
     "icon": {
-      "name": "Tina",
+      "name": "RhTuaIcon",
       "color": "orange",
       "style": "float"
     },
@@ -9,16 +9,12 @@
     "color": "default",
     "nav": [
       {
-        "href": "/",
+        "href": "/posts",
         "label": "Home"
       },
       {
-        "href": "/about",
-        "label": "About"
-      },
-      {
-        "href": "/posts",
-        "label": "Blog"
+        "href": "/",
+        "label": "Sobre mim"
       }
     ]
   },
@@ -28,25 +24,13 @@
         "icon": {
           "name": "FaLinkedin"
         },
-        "url": "https://www.linkedin.com/company/tinacms"
+        "url": "https://www.linkedin.com/in/rhtua/"
       },
       {
         "icon": {
           "name": "FaGithub"
         },
-        "url": "https://github.com/tinacms/tinacms"
-      },
-      {
-        "icon": {
-          "name": "FaYoutube"
-        },
-        "url": "https://www.youtube.com/@TinaCMS"
-      },
-      {
-        "icon": {
-          "name": "FaXTwitter"
-        },
-        "url": "https://x.com/TinaCMS"
+        "url": "https://github.com/rhtua"
       }
     ]
   },
