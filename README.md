@@ -1,4 +1,4 @@
-Landing Page e Blog
+# Landing Page e Blog
 
 📖 Sobre
 
@@ -9,6 +9,7 @@ Gostaria de integrar uma breve página de apresentação e um blog para postar s
 ✅ Edição de Conteúdo Visual: Gerenciamento de conteúdo em tempo real com TinaCMS.
 
 ✅ Funcionalidade 2: Landing Page para apresentação pessoal customizada
+
 
 🚀 Tecnologias Utilizadas
 
@@ -23,4 +24,5 @@ Gostaria de integrar uma breve página de apresentação e um blog para postar s
  - Deploy com Vercel.
 
 📄 Licença
+
 Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
