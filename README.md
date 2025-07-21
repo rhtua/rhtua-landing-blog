@@ -1,14 +1,12 @@
 # Landing Page e Blog
 
-📖 Sobre
-
-Gostaria de integrar uma breve página de apresentação e um blog para postar sem maiores dificuldades
+## Gostaria de integrar uma breve página de apresentação e um blog para postar sem maiores dificuldades
 
 ✨ Funcionalidades
 
-✅ Edição de Conteúdo Visual: Gerenciamento de conteúdo em tempo real com TinaCMS.
+ - Edição de Conteúdo Visual: Gerenciamento de conteúdo em tempo real com TinaCMS.
 
-✅ Funcionalidade 2: Landing Page para apresentação pessoal customizada
+ - Funcionalidade 2: Landing Page para apresentação pessoal customizada
 
 
 🚀 Tecnologias Utilizadas
