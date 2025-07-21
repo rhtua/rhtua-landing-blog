@@ -1,6 +1,7 @@
-(Landing Page e Blog)
+Landing Page e Blog
 
 📖 Sobre
+
 Gostaria de integrar uma breve página de apresentação e um blog para postar sem maiores dificuldades
 
 ✨ Funcionalidades
