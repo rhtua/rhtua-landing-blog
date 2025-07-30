@@ -69,6 +69,30 @@ const aboutTextPortuguese = {
       gitLink: "https://github.com/rhtua/DevCRUD",
       figma: "https://www.figma.com/file/6YFqx5xv9ftVflrMam1JcZ/DevCRUD",
     },
+    vendaTurbinada: {
+      name: "Venda Turbinada",
+      description:
+        "Página promocional para uma campanha de vendas da Gazin, com foco em conversão e usabilidade, também com painel de administração.",
+      tecnologies: "React | RemixJS | Typescript | ChakraUI",
+      image: "/media/vendaturbinada.png",
+      gitLink: undefined,
+      figma: undefined
+    },
+    agilePoll: {
+      name: "Agile Poll",
+      description:
+        "Sistema de votação para Scrum, Kanban e outras metodologias ágeis. Disponível em www.agilepoll.rhtua.com.br.",
+      tecnologies: "React | Typescript | Firebase | ChakraUI",
+      image: "/media/agilepoll.png",
+      gitLink: "https://github.com/rhtua/agilePoll",
+    },
+    portifolio_v1: {
+      name: "Portfólio v1",
+      description: "Primeira versão do meu portfólio, feito em Gatsby.",
+      tecnologies: "Gatsby | Javascript | TailwindCSS | GraphQL",
+      image: "/media/portifolio_v1.png",
+      gitLink: "https://github.com/rhtua/portfolio_v1",
+      figma: undefined,
   },
   skillList: {
     education: {
@@ -86,6 +110,7 @@ const aboutTextPortuguese = {
         },
       },
     },
+  },
     hardSkills: {
       name: "HARD SKILLS",
       items: {
@@ -179,6 +204,32 @@ const aboutTextEnglish = {
       gitLink: "https://github.com/rhtua/DevCRUD",
       figma: "https://www.figma.com/file/6YFqx5xv9ftVflrMam1JcZ/DevCRUD",
     },
+    vendaTurbinada: {
+      name: "Venda Turbinada",
+      description:
+        "Promotional page for a Gazin sales campaign, focused on conversion and usability, also with an admin panel.",
+      tecnologies: "React | RemixJS | Typescript | ChakraUI",
+      image: "/media/vendaturbinada.png",
+      gitLink: undefined,
+      figma: undefined
+    },
+    agilePoll: {
+      name: "Agile Poll",
+      description:
+        "Voting system for Scrum, Kanban and other agile methodologies. Available at www.agilepoll.rhtua.com.br.",
+      tecnologies: "React | Typescript | Firebase | ChakraUI",
+      image: "/media/agilepoll.png",
+      gitLink: "https://github.com/rhtua/agilePoll",
+      figma: undefined
+    },
+    portifolio_v1: {
+      name: "Portfólio v1",
+      description: "First version of my portfolio, built with Gatsby.",
+      tecnologies: "Gatsby | Javascript | TailwindCSS | GraphQL",
+      image: "/media/portifolio_v1.png",
+      gitLink: "https://github.com/rhtua/portfolio_v1",
+      figma: undefined,
+  },
   },
   skillList: {
     education: {
