@@ -239,7 +239,8 @@
 }
 
 .projectsSlide {
-  max-height: 100% !important;
+  max-height: 90% !important;
+  height: 100% !important;
   width: 100%;
 }
 

@@ -8,13 +8,11 @@ import { Navigation, Pagination } from 'swiper/modules';
 
 export const ProjectsSlide: React.FC = () => {
   const text = aboutText;
-  const [isLargerThanXl, setIsLargerThanXl] = useState(false);
   const [isSmallerThanLg, setIsSmallerThanLg] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsLargerThanXl(window.innerWidth >= 1280); // 80em = 1280px
-      setIsSmallerThanLg(window.innerWidth <= 992); // 62em = 992px
+      setIsSmallerThanLg(window.innerWidth <= 992);
     };
 
     handleResize();
@@ -41,7 +39,7 @@ export const ProjectsSlide: React.FC = () => {
               alt={item.name}
               width={500}
               height={300}
-              className='w-full h-auto object-contain lg:object-cover 2xl:object-contain rounded-2xl'
+              className='w-full lg:min-h-[250px] object-contain lg:object-cover 2xl:object-contain rounded-2xl'
             />
             {/* Hover Overlay */}
             <div className='absolute inset-0 bg-gray-900 bg-opacity-90 rounded-2xl p-4 lg:p-2 2xl:p-8 flex items-center justify-center opacity-0 group-hover:opacity-90 transition-opacity duration-200 select-none'>
@@ -58,7 +56,7 @@ export const ProjectsSlide: React.FC = () => {
         </p>
 
         {/* Action Icons */}
-        <div className='flex items-center justify-center gap-4 lg:gap-4 min-w-20 my-2 lg:my-4 xl:my-6'>
+        <div className='flex items-center justify-center gap-4 lg:gap-4 min-w-20 mt-2 lg:mt-4 xl:mt-6'>
           <button
             onClick={() => window.open(item.gitLink, '_blank')}
             className=' text-white hover:text-orange-500 transition-colors duration-200 cursor-pointer'
@@ -80,47 +78,35 @@ export const ProjectsSlide: React.FC = () => {
 
   return (
     <>
-      {/* Desktop Grid Layout (XL and above) */}
-      {isLargerThanXl && (
-        <div className='w-full grid grid-cols-2 xl:grid-cols-3 gap-10 px-20 items-center'>
-          {makeItems}
-        </div>
-      )}
+      <div className='flex flex-col w-full justify-center mt-4 md:mt-0 gap-2 lg:gap-6'>
+        {isSmallerThanLg && (
+          <div className='flex flex-col px-3 w-full items-start my-4 opacity-70'>
+            <h2 className='cursor-pointer select-none text-2xl font-semibold text-orange-500'>
+              {text.projects}
+            </h2>
+            <div className='w-full h-0.5 bg-orange-500'></div>
+          </div>
+        )}
 
-      {/* Mobile/Tablet Layout */}
-      {!isLargerThanXl && (
-        <div className='flex flex-col w-full justify-center mt-4 md:mt-0 gap-2 lg:gap-6'>
-          {/* Mobile Section Header */}
-          {isSmallerThanLg && (
-            <div className='flex flex-col px-3 w-full items-start my-4 opacity-70'>
-              <h2 className='cursor-pointer select-none text-2xl font-semibold text-orange-500'>
-                {text.projects}
-              </h2>
-              <div className='w-full h-0.5 bg-orange-500'></div>
-            </div>
-          )}
-
-          {/* Swiper Component */}
-          <Swiper
-            slidesPerView={!isSmallerThanLg ? 2.2 : 1.2}
-            spaceBetween={!isSmallerThanLg ? 10 : 20}
-            centeredSlides={isSmallerThanLg}
-            navigation={!isSmallerThanLg}
-            pagination={{
-              clickable: true,
-            }}
-            className='projectsSwiper w-full'
-            allowTouchMove={true}
-            modules={[Pagination, Navigation]}
-          >
-            {makeItems.map((item, index) => (
-              <SwiperSlide key={index} className='projectsSlide'>
-                {item}
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      )}
+        <Swiper
+          slidesPerView={!isSmallerThanLg ? 2.2 : 1.2}
+          spaceBetween={!isSmallerThanLg ? 10 : 20}
+          centeredSlides={isSmallerThanLg}
+          navigation={!isSmallerThanLg}
+          pagination={{
+            clickable: true,
+          }}
+          className='projectsSwiper w-full'
+          allowTouchMove={true}
+          modules={[Pagination, Navigation]}
+        >
+          {makeItems.map((item, index) => (
+            <SwiperSlide key={index} className='projectsSlide'>
+              {item}
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </>
   );
 };
