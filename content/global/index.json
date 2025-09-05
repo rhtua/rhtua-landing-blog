@@ -9,13 +9,13 @@
     "color": "default",
     "nav": [
       {
-        "href": "/posts",
-        "label": "Home"
-      },
-      {
         "href": "/",
         "label": "Sobre mim"
-      }
+      },
+      {
+        "href": "/about",
+        "label": "Sobre o blog"
+      } 
     ]
   },
   "footer": {

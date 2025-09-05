@@ -1,7 +1,9 @@
 'use client';
+import { homeText } from '@/landing/translation';
 import { GitIcon, InIcon, BskIcon, CvIcon } from '../icons';
 
 export const Social: React.FC = () => {
+  const resumeLink = homeText.resume;
   return (
     <div className='w-full flex items-center justify-center gap-[1rem] lg:gap-[.5rem] flex-row lg:flex-col h-full'>
       <button
@@ -31,9 +33,7 @@ export const Social: React.FC = () => {
 
       <button
         className='w-[6%] lg:w-[60%] xl:w-[45%] text-[#1A202C] hover:text-orange-500 cursor-pointer transition-colors duration-200'
-        onClick={() =>
-          window.open('https://www.rhtua.com.br/Arthur-Fusieger-Resume.pdf')
-        }
+        onClick={() => window.open(resumeLink, '_blank')}
       >
         <CvIcon />
       </button>

@@ -9,12 +9,13 @@ import { usePathname } from 'next/navigation';
 import logo from '@/public/logo-highres.png';
 
 export const Header = () => {
+  const { globalSettings, theme } = useLayout();
+  const [menuState, setMenuState] = React.useState(false);
+
   if (usePathname() === '/') return;
 
-  const { globalSettings, theme } = useLayout();
   const header = globalSettings!.header!;
 
-  const [menuState, setMenuState] = React.useState(false);
   return (
     <header>
       <nav

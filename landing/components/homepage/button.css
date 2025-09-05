@@ -7,9 +7,7 @@
   box-sizing: border-box;
 }
 button {
-  z-index: 1;
   position: relative;
-  display: inline-block;
   cursor: pointer;
   outline: none;
   border: 0;
@@ -21,6 +19,8 @@ button {
   font-family: inherit;
 }
 button.learn-more {
+  z-index: 1;
+  display: inline-block;
   width: 14rem;
   height: auto;
 }
