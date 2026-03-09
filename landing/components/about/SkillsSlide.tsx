@@ -8,10 +8,10 @@ export const SkillsSlide: React.FC = () => {
     <div className="flex flex-col h-auto lg:h-full w-full justify-center">
       {/* Mobile Section Header */}
       <div className="flex flex-col px-3 w-full items-start my-4 mb-8 opacity-70 lg:hidden">
-        <h2 className="cursor-pointer select-none text-2xl font-semibold text-orange-500">
+        <h2 className="cursor-pointer select-none text-2xl font-semibold text-landing-accent">
           {text.skills}
         </h2>
-        <div className="w-full h-0.5 bg-orange-500"></div>
+        <div className="w-full h-0.5 bg-landing-accent"></div>
       </div>
 
       {/* Main Content */}

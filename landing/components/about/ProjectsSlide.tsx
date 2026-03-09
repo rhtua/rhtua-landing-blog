@@ -56,7 +56,7 @@ export const ProjectsSlide: React.FC = () => {
           {item.figma && (
             <button
               onClick={() => window.open(item.figma, '_blank')}
-              className=' text-white hover:text-orange-500 transition-colors duration-200 cursor-pointer'
+              className=' text-white hover:text-landing-accent transition-colors duration-200 cursor-pointer'
             >
               <FigmaIcon width={20} />
             </button>
@@ -70,10 +70,10 @@ export const ProjectsSlide: React.FC = () => {
     <>
       <div className='flex flex-col w-full justify-center mt-4 md:mt-0 gap-2 lg:gap-6'>
         <div className='flex flex-col px-3 w-full items-start my-4 opacity-70 lg:hidden'>
-          <h2 className='cursor-pointer select-none text-2xl font-semibold text-orange-500'>
+          <h2 className='cursor-pointer select-none text-2xl font-semibold text-landing-accent'>
             {text.projects}
           </h2>
-          <div className='w-full h-0.5 bg-orange-500'></div>
+          <div className='w-full h-0.5 bg-landing-accent'></div>
         </div>
 
         <Swiper

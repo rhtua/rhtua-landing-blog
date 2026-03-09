@@ -42,7 +42,7 @@ export const BasePage: React.FC = () => {
         >
           <span className='text-2xl md:text-3xl xl:text-4xl font-semibold select-none text-gray-900 p-1'>
             arthur
-            <span className='text-orange-500 text-3xl md:text-4xl xl:text-3xl'>
+            <span className='text-landing-accent text-3xl md:text-4xl xl:text-3xl'>
               .
             </span>
           </span>
@@ -82,7 +82,7 @@ export const BasePage: React.FC = () => {
               <div className='absolute top-full right-[-5] w-screen bg-white z-50 border-t border-gray-200'>
                 <div className='w-full flex flex-col items-center py-4 gap-5'>
                   <button
-                    className='border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-2 rounded min-w-[50%] transition-colors duration-300'
+                    className='border border-landing-accent text-landing-accent hover:bg-landing-accent hover:text-white px-6 py-2 rounded min-w-[50%] transition-colors duration-300'
                     onClick={() => {
                       window.open('mailto:contato@rhtua.com.br');
                       setIsMenuOpen(false);
@@ -112,7 +112,7 @@ export const BasePage: React.FC = () => {
         <div className='h-full w-[2%] md:w-[3%] xl:w-[10%]' />
 
         {/* Content Area */}
-        <div className='w-full h-full bg-[#0f0f0f] rounded-2xl px-0 lg:px-4 flex justify-center'>
+        <div className='w-full h-full bg-landing-bg rounded-2xl px-0 lg:px-4 flex justify-center'>
           <Swiper
             ref={swiperRef}
             className='mySwiper swiper-h w-full h-full'

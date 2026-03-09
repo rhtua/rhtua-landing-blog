@@ -40,10 +40,20 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  /* Landing page tokens */
+  --color-landing-accent: var(--landing-accent);
+  --color-landing-bg: var(--landing-bg);
+  --color-landing-text: var(--landing-text);
+  --color-landing-text-dark: var(--landing-text-dark);
 }
 
 :root {
   --radius: 0.625rem;
+  /* Landing page design tokens */
+  --landing-accent: #F04A00;
+  --landing-bg: #0f0f0f;
+  --landing-text: #ebebeb;
+  --landing-text-dark: #1A202C;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -245,7 +255,7 @@
 }
 
 :root {
-  --swiper-navigation-color: #f04a00;
+  --swiper-navigation-color: var(--landing-accent);
 }
 
 @media only screen and (max-width: 62em) {

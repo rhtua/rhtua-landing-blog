@@ -26,21 +26,21 @@ export const About: React.FC = () => {
         <button
           className='cursor-pointer select-none hover:text-orange-400 transition-colors duration-200 aboutHeader'
           onClick={() => slideTo(0)}
-          style={{ color: active === 0 ? '#F04A00' : '#EBEBEB' }}
+          style={{ color: active === 0 ? 'var(--landing-accent)' : 'var(--landing-text)' }}
         >
           {text.projects}
         </button>
         <button
           className='cursor-pointer select-none hover:text-orange-400 transition-colors duration-200 aboutHeader'
           onClick={() => slideTo(1)}
-          style={{ color: active === 1 ? '#F04A00' : '#EBEBEB' }}
+          style={{ color: active === 1 ? 'var(--landing-accent)' : 'var(--landing-text)' }}
         >
           {text.skills}
         </button>
         <button
           className='cursor-pointer select-none hover:text-orange-400 transition-colors duration-200 aboutHeader'
           onClick={() => slideTo(2)}
-          style={{ color: active === 2 ? '#F04A00' : '#EBEBEB' }}
+          style={{ color: active === 2 ? 'var(--landing-accent)' : 'var(--landing-text)' }}
         >
           {text.work}
         </button>

@@ -8,10 +8,10 @@ export const Homepage: React.FC<{
 }> = ({ slideTo }) => {
   const text = homeText;
   return (
-    <div className='relative w-full h-full background flex flex-col items-center justify-end text-[#ebebeb] text-[180%] sm:text-[170%] md:text-[180%] lg:text-[280%] xl:text-[72px]'>
+    <div className='relative w-full h-full background flex flex-col items-center justify-end text-landing-text text-[180%] sm:text-[170%] md:text-[180%] lg:text-[280%] xl:text-[72px]'>
       <Link
         href='/posts'
-        className='absolute flex top-0 bg-white text-[1rem] mt-2 px-4 py-2 z-[100] rounded-full text-[#F04A00] font-semibold lg:hidden'
+        className='absolute flex top-0 bg-white text-[1rem] mt-2 px-4 py-2 z-[100] rounded-full text-landing-accent font-semibold lg:hidden'
       >
         {text.myBlog}
       </Link>
@@ -19,7 +19,7 @@ export const Homepage: React.FC<{
         <div className='z-[1] font-semibold flex'>
           <span>
             {text.hi}
-            <span className='text-[#F04A00]'>,</span>
+            <span className='text-landing-accent'>,</span>
           </span>
         </div>
         <div className='z-[1] font-semibold mb-8 flex'>

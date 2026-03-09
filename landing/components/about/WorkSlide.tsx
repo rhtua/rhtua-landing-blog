@@ -8,10 +8,10 @@ export const WorkSlide: React.FC = () => {
     <div className="w-full h-auto lg:h-full flex flex-col justify-center">
       {/* Mobile Section Header */}
       <div className="flex flex-col px-4 w-full items-start my-[5%] mt-[3%] opacity-70 lg:hidden">
-        <h2 className="cursor-pointer select-none text-2xl font-semibold text-orange-500">
+        <h2 className="cursor-pointer select-none text-2xl font-semibold text-landing-accent">
           {text.work}
         </h2>
-        <div className="w-full h-0.5 bg-orange-500" />
+        <div className="w-full h-0.5 bg-landing-accent" />
       </div>
 
       {/* Work Experience Items */}
