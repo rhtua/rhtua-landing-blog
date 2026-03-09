@@ -9,11 +9,11 @@ import { Button } from '../ui/button';
 import { iconSchema } from '@/tina/fields/icon';
 import { Icon } from '../icon';
 import { Section, sectionBlockSchemaField } from '../layout/section';
-import { AnimatedGroup } from '../motion-primitives/animated-group';
+import { AnimatedGroup, type AnimatedGroupProps } from '../motion-primitives/animated-group';
 import { TextEffect } from '../motion-primitives/text-effect';
 import HeroVideoDialog from '../ui/hero-video-dialog';
 import { cn } from '@/lib/utils';
-const transitionVariants = {
+const transitionVariants: NonNullable<AnimatedGroupProps['variants']> = {
   container: {
     visible: {
       transition: {

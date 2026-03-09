@@ -43,13 +43,11 @@ const Post: Collection = {
       collections: ['author'],
       ui: {
         optionComponent: (
-          props: {
-            name?: string;
-            avatar: string;
-          },
+          props: Record<string, unknown>,
           _internalSys: { path: string }
         ) => {
-          const { name, avatar } = props;
+          const name = typeof props.name === 'string' ? props.name : undefined;
+          const avatar = typeof props.avatar === 'string' ? props.avatar : undefined;
           if (!name) return _internalSys.path;
 
           return (
@@ -96,11 +94,9 @@ const Post: Collection = {
           collections: ['tag'],
           ui: {
             optionComponent: (
-              props: {
-                name?: string;
-              },
+              props: Record<string, unknown>,
               _internalSys: { path: string }
-            ) => props.name || _internalSys.path
+            ) => (typeof props.name === 'string' ? props.name : _internalSys.path)
           },
         },
       ],

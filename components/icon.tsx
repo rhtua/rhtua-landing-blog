@@ -11,8 +11,8 @@ import { AiFillInstagram } from "react-icons/ai";
 import React from "react";
 import { useLayout } from "./layout/layout-context";
 
-export const IconOptions = {
-  Tina: (props) => (
+export const IconOptions: Record<string, React.ComponentType<any>> = {
+  Tina: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       {...props}
       viewBox="0 0 66 80"
@@ -94,10 +94,15 @@ export const Icon = ({
   parentColor = "",
   className = "",
   tinaField = "",
+}: {
+  data: { name?: string | null; color?: string | null; size?: string | number | null; style?: string | null };
+  parentColor?: string;
+  className?: string;
+  tinaField?: string;
 }) => {
   const { theme } = useLayout();
 
-  if (IconOptions[data.name] === null || IconOptions[data.name] === undefined) {
+  if (!data?.name || IconOptions[data.name] === null || IconOptions[data.name] === undefined) {
     return null;
   }
 
@@ -105,22 +110,27 @@ export const Icon = ({
 
   const IconSVG = IconOptions[name];
 
+  const resolvedSize =
+    typeof size === "number"
+      ? Object.keys(iconSizeClass)[size]
+      : typeof size === "string"
+        ? size
+        : "medium";
   const iconSizeClasses =
-    typeof size === "string"
-      ? iconSizeClass[size]
-      : iconSizeClass[Object.keys(iconSizeClass)[size]];
+    iconSizeClass[resolvedSize as keyof typeof iconSizeClass] || iconSizeClass.medium;
 
   const iconColor = color
     ? color === "primary"
       ? theme!.color
       : color
     : theme!.color;
+  const iconColorKey = (iconColor || "blue") as string;
 
   if (style == "circle") {
     return (
       <div
         {...(tinaField ? { "data-tina-field": tinaField } : {})} // only render data-tina-field if it exists
-        className={`relative z-10 inline-flex items-center justify-center shrink-0 ${iconSizeClasses} rounded-full ${iconColorClass[iconColor].circle} ${className}`}
+        className={`relative z-10 inline-flex items-center justify-center shrink-0 ${iconSizeClasses} rounded-full ${(iconColorClass[iconColorKey] || iconColorClass.blue).circle} ${className}`}
       >
         <IconSVG className="w-2/3 h-2/3" />
       </div>
@@ -129,9 +139,9 @@ export const Icon = ({
     const iconColorClasses =
       iconColorClass[
         parentColor === "primary" &&
-          (iconColor === theme!.color || iconColor === "primary")
+          (iconColorKey === theme!.color || iconColorKey === "primary")
           ? "white"
-          : iconColor!
+          : iconColorKey
       ].regular;
     return (
       <IconSVG

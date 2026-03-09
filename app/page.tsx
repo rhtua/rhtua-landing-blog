@@ -9,9 +9,20 @@ import { BasePage } from '@/landing/components';
 export const revalidate = 300;
 
 export default async function Home() {
-  const data = await client.queries.page({
-    relativePath: `home.mdx`,
-  });
+  let data;
+  try {
+    data = await client.queries.page({
+      relativePath: `home.mdx`,
+    });
+  } catch {
+    return (
+      <>
+        <Analytics />
+        <SpeedInsights />
+        <BasePage />
+      </>
+    );
+  }
   const isHome = data.data.page._sys.relativePath === 'home.mdx';
 
   return (

@@ -8,9 +8,9 @@ import {
 } from "@headlessui/react";
 import { useLayout } from "./layout/layout-context";
 
-export const RawRenderer = ({ rawData, parentColor }) => {
+export const RawRenderer = ({ rawData, parentColor }: { rawData: unknown; parentColor?: string }) => {
   const { theme } = useLayout();
-  const buttonColorClasses = {
+  const buttonColorClasses: Record<string, string> = {
     blue: "text-blue-500",
     teal: "text-teal-500",
     green: "text-green-500",
@@ -20,6 +20,7 @@ export const RawRenderer = ({ rawData, parentColor }) => {
     orange: "text-orange-500",
     yellow: "text-yellow-600",
   };
+  const themeColor = theme?.color || "blue";
   const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -36,7 +37,7 @@ export const RawRenderer = ({ rawData, parentColor }) => {
         type="button"
         onClick={openModal}
         className={`z-10 relative flex items-center px-5 py-2 mx-3 my-2 font-semibold text-sm transition duration-150 ease-out rounded transform focus:shadow-outline focus:outline-hidden whitespace-nowrap opacity-80 hover:opacity-100 shadow-md ${
-          buttonColorClasses[theme!.color!]
+          buttonColorClasses[themeColor] || buttonColorClasses.blue
         }`}
       >
         View Raw Data

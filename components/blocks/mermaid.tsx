@@ -5,7 +5,7 @@ const MermaidElement = dynamic(() => import('../mermaid-renderer'), {
   loading: () => <div>Loading diagram...</div>,
 });
 
-export function mermaid(props) {
+export function mermaid(props?: { value: string }) {
   if (!props?.value) return <></>;
   return <MermaidElement value={props.value} />;
 }
