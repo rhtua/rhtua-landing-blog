@@ -45,7 +45,7 @@ const Post: Collection = {
         optionComponent: (
           props: {
             name?: string;
-            avatar: string;
+            avatar?: string;
           },
           _internalSys: { path: string }
         ) => {
