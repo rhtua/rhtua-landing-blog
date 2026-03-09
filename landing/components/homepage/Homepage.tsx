@@ -5,19 +5,16 @@ import './button.css';
 
 export const Homepage: React.FC<{
   slideTo: (index: number) => void;
-  isLargerThanLg: boolean;
-}> = ({ slideTo, isLargerThanLg }) => {
+}> = ({ slideTo }) => {
   const text = homeText;
   return (
     <div className='relative w-full h-full background flex flex-col items-center justify-end text-[#ebebeb] text-[180%] sm:text-[170%] md:text-[180%] lg:text-[280%] xl:text-[72px]'>
-      {!isLargerThanLg && (
-        <Link
-          href='/posts'
-          className='absolute flex top-0 bg-white text-[1rem] mt-2 px-4 py-2 z-[100] rounded-full text-[#F04A00] font-semibold'
-        >
-          {text.myBlog}
-        </Link>
-      )}
+      <Link
+        href='/posts'
+        className='absolute flex top-0 bg-white text-[1rem] mt-2 px-4 py-2 z-[100] rounded-full text-[#F04A00] font-semibold lg:hidden'
+      >
+        {text.myBlog}
+      </Link>
       <div className='w-full h-full flex flex-col items-center justify-end lg:justify-center px-[2%] mt-0 lg:mt-[30%] mb-[5%] lg:mb-0'>
         <div className='z-[1] font-semibold flex'>
           <span>

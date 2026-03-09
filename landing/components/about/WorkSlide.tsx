@@ -1,32 +1,18 @@
 'use client'
-import { useState, useEffect } from 'react';
 import { aboutText } from "../../translation/about";
 
 export const WorkSlide: React.FC = () => {
   const text = aboutText;
-  const [isLargerThanLg, setIsLargerThanLg] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargerThanLg(window.innerWidth >= 992); // 62em = 992px
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <div className="w-full h-auto lg:h-full flex flex-col justify-center">
       {/* Mobile Section Header */}
-      {!isLargerThanLg && (
-        <div className="flex flex-col px-4 w-full items-start my-[5%] mt-[3%] opacity-70">
-          <h2 className="cursor-pointer select-none text-2xl font-semibold text-orange-500">
-            {text.work}
-          </h2>
-          <div className="w-full h-0.5 bg-orange-500" />
-        </div>
-      )}
+      <div className="flex flex-col px-4 w-full items-start my-[5%] mt-[3%] opacity-70 lg:hidden">
+        <h2 className="cursor-pointer select-none text-2xl font-semibold text-orange-500">
+          {text.work}
+        </h2>
+        <div className="w-full h-0.5 bg-orange-500" />
+      </div>
 
       {/* Work Experience Items */}
       {Object.values(text.workExperiences).map((item, index) => {
@@ -37,18 +23,16 @@ export const WorkSlide: React.FC = () => {
           >
             {/* Timeline */}
             <div className="ml-2 w-0.5 lg:w-full flex flex-col items-center">
-              {!isLargerThanLg && (
-                <>
-                  <div 
-                    className={`w-0.5 bg-gray-50 ${
-                      index === 0 ? 'h-[12%]' : 'h-[7%]'
-                    }`}
-                  />
-                  <div className="h-3 w-3 p-0.5 bg-gray-50 rounded-full">
-                    <div className="h-full w-full bg-gray-900 rounded-full" />
-                  </div>
-                </>
-              )}
+              <div className="lg:hidden">
+                <div 
+                  className={`w-0.5 bg-gray-50 ${
+                    index === 0 ? 'h-[12px]' : 'h-[7px]'
+                  }`}
+                />
+                <div className="h-3 w-3 p-0.5 bg-gray-50 rounded-full">
+                  <div className="h-full w-full bg-gray-900 rounded-full" />
+                </div>
+              </div>
               <div className="h-full lg:h-0.5 w-0.5 lg:w-full bg-gray-50" />
             </div>
 

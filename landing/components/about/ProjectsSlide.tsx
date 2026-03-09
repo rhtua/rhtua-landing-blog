@@ -1,24 +1,14 @@
 'use client';
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { aboutText } from '../../translation/about';
 import { FigmaIcon, GitIcon } from '../icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
+import { useMediaQuery } from 'usehooks-ts';
 
 export const ProjectsSlide: React.FC = () => {
   const text = aboutText;
-  const [isSmallerThanLg, setIsSmallerThanLg] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallerThanLg(window.innerWidth <= 992);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const isMobile = useMediaQuery('(max-width: 991px)');
 
   const makeItems = Object.values(text.projectsList).map((item, index) => {
     return (
@@ -79,20 +69,18 @@ export const ProjectsSlide: React.FC = () => {
   return (
     <>
       <div className='flex flex-col w-full justify-center mt-4 md:mt-0 gap-2 lg:gap-6'>
-        {isSmallerThanLg && (
-          <div className='flex flex-col px-3 w-full items-start my-4 opacity-70'>
-            <h2 className='cursor-pointer select-none text-2xl font-semibold text-orange-500'>
-              {text.projects}
-            </h2>
-            <div className='w-full h-0.5 bg-orange-500'></div>
-          </div>
-        )}
+        <div className='flex flex-col px-3 w-full items-start my-4 opacity-70 lg:hidden'>
+          <h2 className='cursor-pointer select-none text-2xl font-semibold text-orange-500'>
+            {text.projects}
+          </h2>
+          <div className='w-full h-0.5 bg-orange-500'></div>
+        </div>
 
         <Swiper
-          slidesPerView={!isSmallerThanLg ? 2.2 : 1.2}
-          spaceBetween={!isSmallerThanLg ? 10 : 20}
-          centeredSlides={isSmallerThanLg}
-          navigation={!isSmallerThanLg}
+          slidesPerView={!isMobile ? 2.2 : 1.2}
+          spaceBetween={!isMobile ? 10 : 20}
+          centeredSlides={isMobile}
+          navigation={!isMobile}
           pagination={{
             clickable: true,
           }}

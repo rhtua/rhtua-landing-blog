@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { mainText } from '../translation/main';
 import { Homepage, Opening } from '.';
 import { About } from './about';
@@ -10,20 +10,9 @@ import Link from 'next/link';
 
 export const BasePage: React.FC = () => {
   const swiperRef = useRef<SwiperRef>(null);
-  const [isLargerThanLg, setIsLargerThanLg] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const text = mainText;
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargerThanLg(window.innerWidth >= 992);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const slideTo = (index: number) => {
     swiperRef?.current?.swiper.slideTo(index);
@@ -36,17 +25,15 @@ export const BasePage: React.FC = () => {
       {/* Header */}
       <div className='h-[8%] w-full flex items-center justify-between px-2 md:px-[3%] xl:px-[4%]'>
         {/* Experience Button - Desktop Only */}
-        {isLargerThanLg && (
-          <div
-            className='cursor-pointer flex flex-col group buttonHover'
-            onClick={() => window.open('mailto:contato@rhtua.com.br')}
-          >
-            <span className='text-xs md:text-sm xl:text-base font-normal lg:font-normal select-none text-gray-900'>
-              {text.contact}
-            </span>
-            <div className='bg-gray-900 h-px w-0 group-hover:w-full transition-all duration-300'></div>
-          </div>
-        )}
+        <div
+          className='hidden lg:flex cursor-pointer flex-col group buttonHover'
+          onClick={() => window.open('mailto:contato@rhtua.com.br')}
+        >
+          <span className='text-xs md:text-sm xl:text-base font-normal lg:font-normal select-none text-gray-900'>
+            {text.contact}
+          </span>
+          <div className='bg-gray-900 h-px w-0 group-hover:w-full transition-all duration-300'></div>
+        </div>
 
         {/* Logo */}
         <div
@@ -62,65 +49,61 @@ export const BasePage: React.FC = () => {
         </div>
 
         {/* Contact Button - Desktop Only */}
-        {isLargerThanLg && (
-          <Link
-            className='cursor-pointer flex flex-col group buttonHover'
-            href={'/posts'}
-          >
-            <span className='text-xs md:text-sm xl:text-base font-normal lg:font-normal select-none text-gray-900'>
-              BLOG
-            </span>
-            <div className='bg-gray-900 h-px w-0 group-hover:w-full transition-all duration-300'></div>
-          </Link>
-        )}
+        <Link
+          className='hidden lg:flex cursor-pointer flex-col group buttonHover'
+          href={'/posts'}
+        >
+          <span className='text-xs md:text-sm xl:text-base font-normal lg:font-normal select-none text-gray-900'>
+            BLOG
+          </span>
+          <div className='bg-gray-900 h-px w-0 group-hover:w-full transition-all duration-300'></div>
+        </Link>
 
         {/* Mobile Menu */}
-        {!isLargerThanLg && (
-          <div className='relative'>
-            <button
-              className='flex flex-col group buttonHover text-xs md:text-sm xl:text-base font-medium lg:font-normal'
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {text.menu}
-              <div className='bg-gray-900 h-px w-0 group-hover:w-full transition-all duration-300'></div>
-            </button>
+        <div className='relative lg:hidden'>
+          <button
+            className='flex flex-col group buttonHover text-xs md:text-sm xl:text-base font-medium lg:font-normal'
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {text.menu}
+            <div className='bg-gray-900 h-px w-0 group-hover:w-full transition-all duration-300'></div>
+          </button>
 
-            {/* Mobile Menu Dropdown */}
-            {isMenuOpen && (
-              <>
-                {/* Backdrop */}
-                <div
-                  className='fixed inset-0 bg-black bg-opacity-50 z-40'
-                  onClick={() => setIsMenuOpen(false)}
-                />
+          {/* Mobile Menu Dropdown */}
+          {isMenuOpen && (
+            <>
+              {/* Backdrop */}
+              <div
+                className='fixed inset-0 bg-black bg-opacity-50 z-40'
+                onClick={() => setIsMenuOpen(false)}
+              />
 
-                {/* Menu Content */}
-                <div className='absolute top-full right-[-5] w-screen bg-white z-50 border-t border-gray-200'>
-                  <div className='w-full flex flex-col items-center py-4 gap-5'>
-                    <button
-                      className='border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-2 rounded min-w-[50%] transition-colors duration-300'
-                      onClick={() => {
-                        window.open('mailto:contato@rhtua.com.br');
-                        setIsMenuOpen(false);
-                      }}
-                    >
-                      {text.getInTouch}
-                    </button>
+              {/* Menu Content */}
+              <div className='absolute top-full right-[-5] w-screen bg-white z-50 border-t border-gray-200'>
+                <div className='w-full flex flex-col items-center py-4 gap-5'>
+                  <button
+                    className='border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-2 rounded min-w-[50%] transition-colors duration-300'
+                    onClick={() => {
+                      window.open('mailto:contato@rhtua.com.br');
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    {text.getInTouch}
+                  </button>
 
-                    <div className='relative min-w-[40%]'>
-                      <div className='bg-gray-400 h-px w-full' />
-                      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-4'>
-                        {text.or}
-                      </div>
+                  <div className='relative min-w-[40%]'>
+                    <div className='bg-gray-400 h-px w-full' />
+                    <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-4'>
+                      {text.or}
                     </div>
-
-                    <Social />
                   </div>
+
+                  <Social />
                 </div>
-              </>
-            )}
-          </div>
-        )}
+              </div>
+            </>
+          )}
+        </div>
       </div>
 
       {/* Main Content */}
@@ -138,7 +121,7 @@ export const BasePage: React.FC = () => {
             modules={[Pagination]}
           >
             <SwiperSlide key={0}>
-              <Homepage slideTo={slideTo} isLargerThanLg={isLargerThanLg} />
+              <Homepage slideTo={slideTo} />
             </SwiperSlide>
             <SwiperSlide key={1}>
               <About />
@@ -148,7 +131,9 @@ export const BasePage: React.FC = () => {
 
         {/* Side Menu - Desktop Only */}
         <div className='h-full w-[2%] md:w-[3%] xl:w-[10%]'>
-          {isLargerThanLg && <Social />}
+          <div className='hidden lg:block h-full'>
+            <Social />
+          </div>
         </div>
       </div>
 

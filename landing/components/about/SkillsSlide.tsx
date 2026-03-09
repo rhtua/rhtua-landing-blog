@@ -1,32 +1,18 @@
 'use client'
-import { useState, useEffect } from 'react';
 import { aboutText } from "../../translation/about";
 
 export const SkillsSlide: React.FC = () => {
   const text = aboutText;
-  const [isLargerThanLg, setIsLargerThanLg] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargerThanLg(window.innerWidth >= 992); // 62em = 992px
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <div className="flex flex-col h-auto lg:h-full w-full justify-center">
       {/* Mobile Section Header */}
-      {!isLargerThanLg && (
-        <div className="flex flex-col px-3 w-full items-start my-4 mb-8 opacity-70">
-          <h2 className="cursor-pointer select-none text-2xl font-semibold text-orange-500">
-            {text.skills}
-          </h2>
-          <div className="w-full h-0.5 bg-orange-500"></div>
-        </div>
-      )}
+      <div className="flex flex-col px-3 w-full items-start my-4 mb-8 opacity-70 lg:hidden">
+        <h2 className="cursor-pointer select-none text-2xl font-semibold text-orange-500">
+          {text.skills}
+        </h2>
+        <div className="w-full h-0.5 bg-orange-500"></div>
+      </div>
 
       {/* Main Content */}
       <div className="w-full text-gray-200 flex items-center justify-center xl:justify-start px-4 lg:px-4 xl:px-8 flex-col lg:flex-row">
