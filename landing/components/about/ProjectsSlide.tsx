@@ -52,7 +52,7 @@ export const ProjectsSlide: React.FC = () => {
 
         {/* Technologies */}
         <p className='text-sm xl:text-base 2xl:text-lg whitespace-nowrap font-normal text-gray-300 mb-2'>
-          {item.tecnologies}
+          {item.technologies}
         </p>
 
         {/* Action Icons */}
