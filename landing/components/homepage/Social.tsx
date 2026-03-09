@@ -1,6 +1,6 @@
 'use client';
 import { homeText } from '@/landing/translation';
-import { GitIcon, InIcon, BskIcon, CvIcon } from '../icons';
+import { GitIcon, InIcon, CvIcon } from '../icons';
 
 export const Social: React.FC = () => {
   const resumeLink = homeText.resume;
@@ -9,6 +9,8 @@ export const Social: React.FC = () => {
       <button
         className='w-[6%] lg:w-[60%] xl:w-[45%] text-landing-text-dark hover:text-landing-accent cursor-pointer transition-colors duration-200'
         onClick={() => window.open('https://github.com/rhtua', '_blank')}
+        aria-label='GitHub'
+        title='GitHub'
       >
         <GitIcon />
       </button>
@@ -18,22 +20,17 @@ export const Social: React.FC = () => {
         onClick={() =>
           window.open('https://www.linkedin.com/in/rhtua/', '_blank')
         }
+        aria-label='LinkedIn'
+        title='LinkedIn'
       >
         <InIcon />
       </button>
 
       <button
         className='w-[6%] lg:w-[60%] xl:w-[45%] text-landing-text-dark hover:text-landing-accent cursor-pointer transition-colors duration-200'
-        onClick={() =>
-          window.open('https://bsky.app/profile/rhtua.com.br', '_blank')
-        }
-      >
-        <BskIcon />
-      </button>
-
-      <button
-        className='w-[6%] lg:w-[60%] xl:w-[45%] text-landing-text-dark hover:text-landing-accent cursor-pointer transition-colors duration-200'
         onClick={() => window.open(resumeLink, '_blank')}
+        aria-label='Currículo'
+        title='Currículo'
       >
         <CvIcon />
       </button>

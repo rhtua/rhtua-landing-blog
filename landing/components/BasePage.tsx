@@ -6,6 +6,7 @@ import { About } from './about';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import { Social } from './homepage/Social';
+import { WaveBackground } from './WaveBackground';
 import Link from 'next/link';
 
 export const BasePage: React.FC = () => {
@@ -112,11 +113,12 @@ export const BasePage: React.FC = () => {
         <div className='h-full w-[2%] md:w-[3%] xl:w-[10%]' />
 
         {/* Content Area */}
-        <div className='w-full h-full bg-landing-bg rounded-2xl px-0 lg:px-4 flex justify-center'>
+        <div className='w-full h-full bg-landing-bg rounded-2xl px-0 lg:px-4 flex justify-center landing-wave-bg'>
+          <WaveBackground />
           <Swiper
             ref={swiperRef}
             className='mySwiper swiper-h w-full h-full'
-            allowTouchMove={false}
+            allowTouchMove={true}
             direction={'vertical'}
             modules={[Pagination]}
           >

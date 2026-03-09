@@ -63,21 +63,21 @@ const aboutTextPortuguese: AboutTextStructure = {
       timespan: `${gazinWorkPeriod.years} anos ${gazinWorkPeriod.months ? 'e ' + gazinWorkPeriod.months : ''} ${gazinWorkPeriod.months ? (gazinWorkPeriod.months > 1 ? 'meses' : 'mês') : ''
         }`,
       name: 'Gazin Tech',
-      role: 'Desenvolvedor Fullstack',
+      role: 'Desenvolvedor de Software',
       technologies: 'Node | Typescript | React | Monorepo',
     },
     benner: {
-      period: '2019 - 2022',
+      period: '2019 - 2021',
       timespan: '2 anos e 3 meses',
       name: 'Benner Saúde',
-      role: 'Desenvolvedor Fullstack',
+      role: 'Desenvolvedor de Software',
       technologies: 'C# | .Net | SQL Server | Oracle Database',
     },
     cef: {
       period: '2016 - 2017',
       timespan: '1 ano e 1 mês',
       name: 'Caixa Econômica Federal',
-      role: 'Estágiario',
+      role: 'Estagiário',
       technologies: 'Visual Basic for Applications | CorelDraw',
     },
   },
@@ -140,7 +140,7 @@ const aboutTextPortuguese: AboutTextStructure = {
         bachelor: {
           name: 'Bacharel em Engenharia de Software',
           institution: 'Centro Universitário Metropolitano de Maringá',
-          duration: '2020 - 2024',
+          duration: '2019 - 2023',
         },
         mba: {
           name: 'MBA em Engenharia de Software',
@@ -156,6 +156,10 @@ const aboutTextPortuguese: AboutTextStructure = {
         react: 'ReactJS',
         node: 'NodeJS',
         ts: 'Typescript',
+        nextjs: 'NextJS',
+        tailwind: 'Tailwind',
+        firebase: 'Firebase',
+        kafka: 'Kafka',
         sql: 'SQL',
         vite: 'Vite',
         html: 'HTML',
@@ -194,14 +198,14 @@ const aboutTextEnglish: AboutTextStructure = {
           : ""
         }`,
       name: "Gazin Tech",
-      role: "Fullstack Developer",
+      role: "Software Developer",
       technologies: "Node | Typescript | React | Monorepo",
     },
     benner: {
-      period: "2019 - 2022",
+      period: "2019 - 2021",
       timespan: "2 years and 3 months",
       name: "Benner Saúde",
-      role: "Fullstack Developer",
+      role: "Software Developer",
       technologies: "C# | .Net | SQL Server | Oracle Database",
     },
     cef: {
@@ -274,7 +278,7 @@ const aboutTextEnglish: AboutTextStructure = {
         bachelor: {
           name: "Bachelor of Software Engineering",
           institution: "Centro Universitário Metropolitano de Maringá",
-          duration: "2020 - 2024",
+          duration: "2019 - 2023",
         },
         mba: {
           name: "Master in Software Engineering",
@@ -290,6 +294,10 @@ const aboutTextEnglish: AboutTextStructure = {
         react: "ReactJS",
         node: "NodeJS",
         ts: "Typescript",
+        nextjs: "NextJS",
+        tailwind: "Tailwind",
+        firebase: "Firebase",
+        kafka: "Kafka",
         sql: "SQL",
         vite: "Vite",
         html: "HTML",
