@@ -114,7 +114,7 @@ export default function PostsClientPage(props: ClientPostProps) {
                         href={post.url}
                         className='inline-flex items-center font-semibold hover:underline md:text-base'
                       >
-                        <span>Read more</span>
+                        <span>Leia mais</span>
                         <ArrowRight className='ml-2 size-4 transition-transform' />
                       </Link>
                     </div>

@@ -37,8 +37,24 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: 'Arthur Fusieger',
-  description: 'Apresentação e Blog',
+  title: {
+    default: 'Arthur Fusieger',
+    template: '%s | Arthur Fusieger',
+  },
+  description: 'Desenvolvedor Fullstack — Portfólio e Blog',
+  metadataBase: new URL('https://rhtua.com.br'),
+  openGraph: {
+    title: 'Arthur Fusieger',
+    description: 'Desenvolvedor Fullstack — Portfólio e Blog',
+    url: 'https://rhtua.com.br',
+    siteName: 'Arthur Fusieger',
+    locale: 'pt_BR',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -48,7 +64,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang='en'
+      lang='pt-BR'
       className={cn(
         fontSans.variable,
         nunito.variable,

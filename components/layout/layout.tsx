@@ -5,7 +5,7 @@ import { Header } from './nav/header';
 import { Footer } from './nav/footer';
 
 type LayoutProps = PropsWithChildren & {
-  rawPageData?: any;
+  rawPageData?: Record<string, unknown>;
 };
 
 export default async function Layout({ children, rawPageData }: LayoutProps) {
@@ -23,7 +23,7 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
   );
 
   return (
-    <LayoutProvider globalSettings={globalData.global} pageData={rawPageData}>
+    <LayoutProvider globalSettings={globalData.global} pageData={rawPageData ?? {}}>
       <Header />
       <main className='overflow-x-hidden pt-20'>{children}</main>
       <Footer />
