@@ -1,0 +1,169 @@
+---
+title: Como usar o Git Bisect para encontrar a origem de qualquer problema
+heroImg: /uploads/posts/what-is-git-bisect-800x500.jpg
+author: content/authors/Arthur-Fusieger.md
+date: 2026-03-08T03:00:00.000Z
+tags:
+  - tag: content/tags/bisect.mdx
+---
+
+Imagine a seguinte situação: o deploy das funcionalidades mais recentes introduziu um bug. O problema é que, à primeira vista, ele parece não ter relação com as mudanças, ou pior, não se consegue determinar quando esse bug surgiu nem sua causa. A nova funcionalidade foi construída em dezenas, talvez centenas de commits. Qual caminho tomar para identificar o problema?
+
+
+
+
+É possível revisar o novo código manualmente, embora exija atenção e paciência equivalentes ao tamanho da feature analisada. Espalhar logs de console em pontos estratégicos é viável e simples, mas, a depender da complexidade ou da natureza do bug, pode ser um processo também longo.
+
+Os debuggers incorporados às IDEs são muito eficientes e permitem a análise de todas as chamadas e variáveis com breakpoints, mas nem sempre ajudam a descobrir quando exatamente o problema foi introduzido. Para esses casos, o Git traz uma ferramenta por vezes esquecida ou desconhecida que pode ajudar e, muito provavelmente, já está presente na sua máquina junto ao Git.
+
+
+
+
+O que é Git Bisect
+
+
+
+
+O comando git bisect realiza uma busca binária entre os commits que podem ter introduzido a falha, reduzindo o número de testes e tentativas necessárias. O funcionamento é simples: a ferramenta pede o hash de um commit em que o bug não existia, como o da última versão estável, por exemplo, e um segundo commit onde agora o problema existe, normalmente o HEAD da branch atual.
+
+Sabendo qual o intervalo entre o commit "bom” e o "ruim”, a ferramenta faz checkout em uma versão no meio do caminho entre as duas e pergunta se o problema ainda existe naquela versão. A partir dessa confirmação, metade das possibilidades é descartada e a iteração continua até identificar o culpado.
+
+Essa abordagem também pode ser usada para outros tipos de investigação, como: encontrar a causa de uma melhoria de performance, qual foi a última versão da aplicação a contar com x componente, ou qualquer outra busca que seja necessária.
+
+
+
+
+Como usar
+
+
+
+
+O uso de git bisect parte de três comandos básicos: start, bad, good
+
+
+
+
+Para iniciar o processo, é necessário usar o start
+
+$ git bisect start
+
+
+
+
+Informar o commit que contém o problema (se não preenchido, assume o commit atual)
+
+$ git bisect bad \<hash\_do\_commit>
+
+
+
+
+Informar um commit onde o problema não existia
+
+$ git bisect good \<hash\_do\_commit>
+
+
+
+
+Uma vez que good e bad sejam especificados, o Git faz checkout em um commit no meio do histórico entre eles e retorna um feedback desse tipo:
+
+
+
+
+Bisecting: 601 revisions left to test after this (roughly 10 steps)
+
+Após compilar e testar novamente, basta informar o resultado ao Git:
+
+
+
+
+Se a versão atual funcionar corretamente: 
+
+$ git bisect good
+
+
+
+
+Se o problema ainda persistir:
+
+$ git bisect bad
+
+
+
+
+A resposta então será algo como a linha abaixo e será feito checkout em um commit diferente:
+
+Bisecting: 337 revisions left to test after this (roughly 9 steps)
+
+
+
+
+Caso não seja possível testar um commit específico por qualquer problema não relacionado à falha que está sendo investigada, é possível também "pular” a revisão dele. A ferramenta selecionará outra versão próxima a essa. Basta rodar:
+$ git bisect skip
+
+
+
+
+Após classificar mais alguns commits como good ou bad, não haverá mais versões para verificar e a resposta será clara:
+
+$ e159647d4d142c41303aaf10c1e11e2208848d7 is the first bad commit
+
+
+
+
+Com a informação em mãos, é possível então encerrar o processo e voltar ao estado original da branch utilizando o comando:
+
+$ git bisect reset
+
+
+
+
+Automatizando o processo
+
+
+
+
+Mesmo com a praticidade trazida pelo comando, o processo pode ser levemente repetitivo. Principalmente em projetos com testes automatizados e muitos commits, é possível fazer com que o Git realize o processo sozinho. Como alternativa, é possível rodar um script customizado que identifica o problema e retorna 0 se o commit estiver correto e 1 se o problema estiver presente. O código de retorno 125 pode ser usado caso uma versão específica não possa ser testada e então a ferramenta pulará esse commit.
+
+
+
+
+O processo é quase idêntico:
+
+$ git bisect start
+
+$ git bisect bad
+
+$ git bisect good \<hash\_do\_commit>
+
+
+
+
+E então fornecer o script para que o bisect execute sozinho:
+
+$ git bisect run npm run test
+
+// ou
+
+$ git bisect run ./script\_personalizado.sh 
+
+
+
+
+Os testes serão realizados automaticamente e economizam ainda mais tempo dessa forma. É uma ótima alternativa, principalmente caso já existam testes ou um script de teste que identifique o problema seja simples de escrever.
+
+
+
+
+Por que você deveria lembrar disso
+
+
+
+
+Sabendo onde a falha aparece inicialmente, pode-se então utilizar os outros métodos já citados para uma investigação mais detalhada em tais mudanças, caso não seja facilmente identificável ou o commit específico ainda tenha uma quantidade de mudanças considerável.
+
+
+
+
+Mesmo quando o uso do bisect não gera a identificação do problema de imediato, a redução considerável da superfície de busca resulta em um ganho de tempo que definitivamente vale a pena considerar em investigações desse tipo, considerando que em um histórico com 1000 commits, uma busca binária reduz a investigação para cerca de 10 testes.
+
+
