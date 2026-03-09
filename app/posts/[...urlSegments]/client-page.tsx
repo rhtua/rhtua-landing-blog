@@ -52,7 +52,9 @@ export default function PostClientPage(props: ClientPostProps) {
         >
           <span
             className={`bg-clip-text text-transparent bg-linear-to-r ${
-              titleColorClasses[theme!.color!]
+              titleColorClasses[
+                (theme?.color as keyof typeof titleColorClasses) ?? 'blue'
+              ]
             }`}
           >
             {post.title}
