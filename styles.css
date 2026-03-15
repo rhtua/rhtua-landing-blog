@@ -305,23 +305,35 @@
   overflow: hidden;
 }
 
-.projectsSwiper .swiper-button-prev,
-.projectsSwiper .swiper-button-next {
-  width: 2rem;
-  height: 2rem;
+.projectsCarouselWrapper {
+  position: relative;
+  width: 100%;
 }
 
-.projectsSwiper .swiper-button-prev::after,
-.projectsSwiper .swiper-button-next::after {
-  font-size: 1.25rem;
+.projectsNavButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  color: var(--landing-accent);
+  opacity: 0.9;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
-.projectsSwiper .swiper-button-prev {
-  left: 0.5rem;
+.projectsNavButton:hover {
+  opacity: 1;
 }
 
-.projectsSwiper .swiper-button-next {
-  right: 0.5rem;
+.projectsNavPrev {
+  left: 0.25rem;
+}
+
+.projectsNavNext {
+  right: 0.25rem;
 }
 
 @media only screen and (max-width: 62em) {

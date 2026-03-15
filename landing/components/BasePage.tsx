@@ -38,7 +38,7 @@ export const BasePage: React.FC = () => {
 
         {/* Logo */}
         <div
-          className='flex items-end gap-0.5 cursor-pointer md:ml-[-7%]'
+          className='flex items-end gap-0.5 cursor-pointer lg:ml-[-7%]'
           onClick={() => slideTo(0)}
         >
           <span className='text-2xl md:text-3xl xl:text-4xl font-semibold select-none text-gray-900 p-1'>

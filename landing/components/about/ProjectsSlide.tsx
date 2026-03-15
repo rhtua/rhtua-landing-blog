@@ -1,14 +1,17 @@
 'use client';
 import Image from 'next/image';
+import { useRef } from 'react';
 import { aboutText } from '../../translation/about';
 import { FigmaIcon, GitIcon } from '../icons';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 import { useMediaQuery } from 'usehooks-ts';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const ProjectsSlide: React.FC = () => {
   const text = aboutText;
   const isMobile = useMediaQuery('(max-width: 991px)');
+  const swiperRef = useRef<SwiperRef>(null);
 
   const makeItems = Object.values(text.projectsList).map((item, index) => {
     return (
@@ -22,14 +25,14 @@ export const ProjectsSlide: React.FC = () => {
         </h3>
 
         {/* Project Image with Overlay */}
-        <div className='relative flex justify-center mb-4 sm:mb-6 xl:mb-10 w-full lg:w-1/2 xl:w-[90%] rounded-2xl select-none group'>
-          <div className='relative w-full rounded-2xl overflow-hidden'>
+        <div className='relative flex justify-center mb-4 sm:mb-6 xl:mb-10 w-full lg:w-[85%] xl:w-[90%] rounded-2xl select-none group'>
+          <div className='relative w-full h-[200px] lg:h-[220px] xl:h-[280px] 2xl:h-[300px] rounded-2xl overflow-hidden'>
             <Image
               src={item.image}
               alt={item.name}
               width={500}
               height={300}
-              className='w-full lg:min-h-[250px] object-contain lg:object-cover 2xl:object-contain rounded-2xl'
+              className='w-full h-full object-cover rounded-2xl'
             />
             {/* Hover Overlay */}
             <div className='absolute inset-0 bg-gray-900 bg-opacity-90 rounded-2xl p-4 lg:p-2 2xl:p-8 flex items-center justify-center opacity-0 group-hover:opacity-90 transition-opacity duration-200 select-none'>
@@ -76,24 +79,48 @@ export const ProjectsSlide: React.FC = () => {
           <div className='w-full h-0.5 bg-landing-accent'></div>
         </div>
 
-        <Swiper
-          slidesPerView={!isMobile ? 2.2 : 1.2}
-          spaceBetween={!isMobile ? 10 : 20}
-          centeredSlides={isMobile}
-          navigation={!isMobile}
-          pagination={{
-            clickable: true,
-          }}
-          className='projectsSwiper w-full'
-          allowTouchMove={true}
-          modules={[Pagination, Navigation]}
-        >
-          {makeItems.map((item, index) => (
-            <SwiperSlide key={index} className='projectsSlide'>
-              {item}
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {/* Carousel wrapper — relative container for the Swiper + arrow buttons */}
+        <div className='projectsCarouselWrapper'>
+          {!isMobile && (
+            <>
+              <button
+                type='button'
+                aria-label='Projeto anterior'
+                className='projectsNavButton projectsNavPrev'
+                onClick={() => swiperRef.current?.swiper.slidePrev()}
+              >
+                <ChevronLeft size={34} strokeWidth={2} />
+              </button>
+              <button
+                type='button'
+                aria-label='Próximo projeto'
+                className='projectsNavButton projectsNavNext'
+                onClick={() => swiperRef.current?.swiper.slideNext()}
+              >
+                <ChevronRight size={34} strokeWidth={2} />
+              </button>
+            </>
+          )}
+
+          <Swiper
+            ref={swiperRef}
+            slidesPerView={!isMobile ? 2.2 : 1.2}
+            spaceBetween={!isMobile ? 10 : 20}
+            centeredSlides={isMobile}
+            pagination={{
+              clickable: true,
+            }}
+            className='w-full'
+            allowTouchMove={true}
+            modules={[Pagination]}
+          >
+            {makeItems.map((item, index) => (
+              <SwiperSlide key={index} className='projectsSlide'>
+                {item}
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </>
   );
